@@ -1,0 +1,831 @@
+---
+title: "Children use disagreement to infer what happened"
+author: "Jamie Amemiya, Gail D. Heyman & Tobias Gerstenberg"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  bookdown::html_document2:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    theme: cosmo
+    highlight: tango
+---
+
+# Libraries
+
+```{r, message=FALSE, warning=FALSE}
+library("lme4")        # for linear mixed effects models
+library("rsample")     # for bootstrapping
+library("xtable")      # for latex tables
+library("kableExtra")  # for rmarkdown
+library("knitr")       # for rmarkdown 
+library("car")         # for hypothesis test
+library("Metrics")     # for rmse
+library("scales")      # for percentage plots
+library("broom.mixed") # for model summaries
+library("tidyverse")   # for everything else
+```
+
+# Helper functions
+
+```{r}
+# function for printing out html or latex tables 
+print_table = function(data, format = "html", digits = 2){
+  if(format == "html"){
+    data %>% 
+      kable(digits = digits) %>% 
+      kable_styling()
+  }else if(format == "latex"){
+    data %>% 
+      xtable(digits = digits,
+             caption = "Caption",
+             label = "tab:table") %>%
+      print(include.rownames = F,
+            booktabs = T,
+            sanitize.colnames.function = identity,
+            caption.placement = "top")
+  }
+}
+
+# suppress grouping warning 
+options(dplyr.summarise.inform = F)
+
+# show figures at the end of code chunks
+opts_chunk$set(comment = "",
+               fig.show = "hold")
+
+# regression function 
+fun.regression = function(formula, data){
+  results = glmer(formula = formula,
+                  family = binomial,
+                  data = data) 
+  print(results)
+  return(results)
+}
+
+# results table 
+fun.table = function(results, type = "exploratory"){
+  table = results %>% 
+    tidy(conf.int = T) %>% 
+    filter(effect == "fixed") %>% 
+    select(-group)
+  
+  if (type == "exploratory"){
+    table = table %>% 
+      select(-c(p.value))
+  }
+  table %>% 
+    print_table()
+}
+```
+
+# EXPERIMENT 1
+
+## DATA
+
+### Read in data
+
+```{r, message=FALSE}
+df.exp1 = read_csv("../data/data1_infer.csv") %>% 
+  rename(trial_order = trial_order_dada)
+```
+
+## STATS
+
+### Counterbalancing
+
+- check if counterbalanced factors moderate the effect of trial type
+
+#### Story order
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_disagree * story_order_wagon + (1 | participant)",
+  data = df.exp1)
+
+fun.table(results)
+```
+
+#### Trial order
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_disagree * trial_order + (1 | participant)",
+  data = df.exp1)
+
+fun.table(results)
+```
+
+#### Valence
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_disagree * valence_neg + (1 | participant)",
+  data = df.exp1)
+
+fun.table(results)
+```
+
+### Confirmatory analysis
+
+#### Trial type effect
+
+Choose ambiguous statement more in disagreement than agreement trials. 
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_disagree + (1 | participant)",
+  data = df.exp1)
+
+fun.table(results, type = "confirmatory")
+```
+
+#### Inferences above chance
+
+Choose unambiguous in agreement trials above chance (log odds = -.69; 33%). 
+
+```{r}
+results = fun.regression(
+  formula = "unambiguous_yes ~ 1 + condition_disagree + (1 | participant)",
+  data = df.exp1)
+
+fun.table(results, type = "confirmatory")
+linearHypothesis(results, "(Intercept) = -.69")
+```
+
+
+#### Ambiguous choice
+
+Choose ambiguous in disagreement trials above chance (log odds = -.69; 33%).
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_agree + (1 | participant)",
+  data = df.exp1)
+
+fun.table(results, type = "confirmatory")
+linearHypothesis(results, "(Intercept) = -.69")
+```
+
+### Exploratory analysis
+
+#### Trial type by age interaction
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_disagree * age_continuous + (1 | participant)",
+  data = df.exp1)
+
+fun.table(results)
+```
+
+#### Moderation by age
+
+```{r}
+# from 7 to 11 years 
+for(i in 7:11){
+  cat(str_c("Age = ", i, "\n\n"))
+  results = fun.regression(
+    formula = "ambiguous_yes ~ 1 + condition_disagree + (1 | participant)",
+    data = df.exp1 %>% 
+      filter(age_group == i))
+}
+```
+
+## PLOTS
+
+### Bar plot
+
+```{r, fig.width=12, fig.height=6}
+# Data for Plot
+df.plot = df.exp1 %>%
+  group_by(condition_disagree) %>%
+  count(age_group, selection) %>%
+  complete(age_group, selection, fill = list(n = 0)) %>%
+  mutate(selection = factor(selection,
+                            levels = c("Unambiguous", "Ambiguous", "Random")),
+         condition_disagree = factor(condition_disagree,
+                                     levels = c(0, 1),
+                                     labels = c("Agreement Trials",
+                                                "Disagreement Trials")))
+
+# Plot
+ggplot(data = df.plot,
+         mapping = aes(x = age_group,
+                       y = n,
+                       fill = selection)) +
+  geom_bar(position = "fill",
+           stat = "identity",
+           color = "black") +
+  facet_grid(cols = vars(condition_disagree)) +
+  scale_fill_manual(values = c("#009999", "#CC6600", "white")) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Age", 
+       y = "Inferred Utterance",
+       fill = "Possible Statements",
+       title = "Experiment 1: Inference") + 
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5,
+                                  size = 20,
+                                  face = "bold"),
+        strip.text = element_text(size = 18),
+        strip.background = element_blank(),
+        axis.title = element_text(size = 18),
+        axis.text = element_text(size = 16),
+        legend.title = element_text(size = 20),
+        legend.text = element_text(size = 16),
+        legend.position = "right") 
+
+ggsave(file = "../figures/plots/exp1_figure.pdf",
+       width = 12,
+       height = 6)
+```
+
+# EXPERIMENT 2
+
+## DATA
+
+### Read in data
+
+```{r, message=FALSE}
+df.exp2.predict = read_csv("../data/data2_predict.csv")
+df.exp2.infer = read_csv("../data/data2_infer.csv") %>% 
+  drop_na()
+```
+
+## STATS
+
+### Counterbalancing
+
+#### Prediction condition
+
+##### Story order
+
+```{r}
+results = fun.regression(
+  formula = "dis_yes ~ 1 + condition_amb * story_order_wagon + (1 | participant)",
+  data = df.exp2.predict)
+
+fun.table(results)
+```
+
+##### Trial order
+
+```{r}
+results = fun.regression(
+  formula = "dis_yes ~ 1 + condition_amb*trial_order_auau + (1 | participant)",
+  data = df.exp2.predict)
+
+fun.table(results)  
+```
+
+##### Valence
+
+```{r}
+results = fun.regression(
+  formula = "dis_yes ~ 1 + condition_amb * valence_neg + (1 | participant)",
+  data = df.exp2.predict)
+
+fun.table(results)  
+```
+
+#### Inference condition
+
+##### Story order
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_disagree * story_order_wagon + (1 | participant)",
+  data = df.exp2.infer)
+
+fun.table(results)  
+```
+
+##### Trial order
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_disagree * trial_order_dada + (1 | participant)",
+  data = df.exp2.infer)
+
+fun.table(results)  
+```
+
+##### Valence
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_disagree * valence_neg + (1 | participant)",
+  data = df.exp2.infer)
+
+fun.table(results)  
+```
+
+### Confirmatory analyses
+
+#### Trial type effect
+
+##### Prediction condition
+
+Predict disagreement more in ambiguous than unambiguous trials. 
+
+```{r}
+results = fun.regression(
+  formula = "dis_yes ~ 1 + condition_amb + (1 | participant)",
+  data = df.exp2.predict)
+
+prop.table(table(df.exp2.predict$condition_amb, df.exp2.predict$dis_yes),
+           margin = 1)
+
+fun.table(results, type = "confirmatory") 
+```
+
+##### Inference condition
+
+Choose ambiguous statement more in disagreement than agreement trials. 
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_disagree + (1 | participant)",
+  data = df.exp2.infer)
+
+prop.table(table(df.exp2.infer$condition_disagree, df.exp2.infer$ambiguous_yes), margin=1)
+
+fun.table(results, type = "confirmatory") 
+```
+
+### Exploratory analysis
+
+#### Trial type by age interaction
+
+##### Prediction
+
+```{r}
+results = fun.regression(
+  formula = "dis_yes ~ 1 + condition_amb * age_continuous + (1 | participant)",
+  data = df.exp2.predict)
+
+fun.table(results) 
+```
+
+
+##### Inference
+
+```{r}
+results = fun.regression(
+  formula = "ambiguous_yes ~ 1 + condition_disagree * age_continuous + (1 | participant)",
+  data = df.exp2.infer)
+
+fun.table(results) 
+```
+
+#### Moderation by age
+
+##### Prediction condition
+
+```{r}
+# from 7 to 11 years 
+for(i in 7:11){
+  cat(str_c("Age = ", i, "\n\n"))
+  fun.regression(
+    formula = "dis_yes ~ 1 + condition_amb + (1 | participant)",
+    data = df.exp2.predict %>% 
+      filter(age_group == i))
+}
+```
+
+##### Inference condition
+
+```{r}
+# from 7 to 11 years 
+for(i in 7:11){
+  cat(str_c("Age = ", i, "\n\n"))
+  fun.regression(
+    formula = "ambiguous_yes ~ 1 + condition_disagree + (1 | participant)",
+    data = df.exp2.infer %>% 
+      filter(age_group == i))
+}
+```
+
+### Bootstrapping confidence intervals
+
+#### Prediction condition
+
+```{r, warning=FALSE}
+set.seed(1)
+
+# number of bootstrap samples
+n_bootstraps = 1000
+
+df.prediction.boot = df.exp2.predict %>% 
+  bootstraps(times = n_bootstraps,
+             strata = age_group) %>% 
+  mutate(prob = map(.x = splits,
+                    .f = ~ .x %>% 
+                      as_tibble() %>% 
+                      count(age_group, condition_amb_c, dis_yes) %>%
+                      complete(age_group, condition_amb_c, dis_yes,
+                               fill = list(n = 0)) %>% 
+                      group_by(age_group, condition_amb_c) %>% 
+                      # compute probability
+                      reframe(p = n/sum(n)) %>% 
+                      arrange(age_group, condition_amb_c) %>% 
+                      # keep only even rows
+                      filter(row_number() %% 2 == 0))) %>% 
+  unnest(prob) %>% 
+  select(-splits) %>% 
+  group_by(age_group, condition_amb_c) %>% 
+  summarize(p_low = quantile(p, 0.025),
+            p_high = quantile(p, 0.975)) %>% 
+  ungroup()
+```
+
+#### Inference condition
+
+```{r, warning=FALSE}
+set.seed(1)
+
+# number of bootstrap samples
+n_bootstraps = 1000
+
+df.inference.boot = df.exp2.infer %>% 
+  bootstraps(times = n_bootstraps,
+             strata = age_group) %>% 
+  mutate(prob = map(.x = splits,
+                    .f = ~ .x %>% 
+                      as_tibble() %>% 
+                      count(age_group, condition_disagree_c, ambiguous_yes) %>% 
+                      complete(age_group, condition_disagree_c, ambiguous_yes,
+                               fill = list(n = 0)) %>% 
+                      group_by(age_group, condition_disagree_c) %>% 
+                      # compute probability
+                      reframe(p = n/sum(n)) %>% 
+                      arrange(age_group, condition_disagree_c) %>% 
+                      # keep only even rows
+                      filter(row_number() %% 2 == 0))) %>% 
+  unnest(prob) %>% 
+  select(-splits) %>% 
+  group_by(age_group, condition_disagree_c) %>% 
+  summarize(p_low = quantile(p, 0.025),
+            p_high = quantile(p, 0.975)) %>% 
+  ungroup()
+```
+
+### Bayesian model
+
+#### Prediction data
+
+```{r}
+df.exp2.predict.prob = df.exp2.predict %>% 
+  count(age_group, condition_amb_c, dis_yes) %>% 
+  group_by(age_group, condition_amb_c) %>% 
+  mutate(probability = n/sum(n)) %>% 
+  ungroup() %>% 
+  mutate(utterance = str_remove_all(condition_amb_c, " Trials"),
+         utterance = factor(utterance,
+                            levels = c("Unambiguous", "Ambiguous")),
+         agreement = factor(dis_yes,
+                            levels = c(0, 1),
+                            labels = c("agree", "disagree"))) %>% 
+  select(-c(condition_amb_c, dis_yes, n)) %>% 
+  relocate(probability, .after = last_col()) %>%
+  arrange(age_group, utterance, agreement)
+```
+
+#### Without softmax
+
+```{r}
+utterance_prior = c(0.5, 0.5)
+
+df.inference = df.exp2.predict.prob %>% 
+    group_by(agreement, age_group) %>% 
+    mutate(prior = utterance_prior) %>% 
+    mutate(posterior = probability * prior / 
+               sum(probability * prior)) %>% 
+    ungroup()
+
+df.model.posterior = df.inference %>% 
+    rename(condition = agreement) %>% 
+    mutate(condition = factor(condition,
+                              levels = c("agree", "disagree"),
+                              labels = c("Agreement Trials", "Disagreement Trials"))) %>% 
+    filter(utterance == "Ambiguous")
+```
+
+#### One softmax parameter
+
+```{r, warning=FALSE, message=FALSE}
+age = 7:11
+
+softmax = function(vec, temp = 3) {
+    out = exp(vec*temp) / sum(exp(vec*temp))
+    return(out)
+}
+
+df.data = df.exp2.infer %>% 
+    count(age_group, condition_disagree_c, ambiguous_yes) %>% 
+    group_by(age_group, condition_disagree_c) %>% 
+    reframe(p = n/sum(n)) %>% 
+    filter(row_number() %% 2 == 0) %>% 
+    rename(agreement = condition_disagree_c) %>% 
+    mutate(agreement = ifelse(agreement == "Agreement Trials", "agree", "disagree"))
+
+fit_softmax = function(beta){
+    df.prediction = df.inference %>% 
+        filter(age_group %in% age) %>%
+        select(age_group, utterance, agreement, posterior) %>% 
+        pivot_wider(names_from = utterance,
+                    values_from = posterior) %>% 
+        rowwise() %>% 
+        mutate(Unambiguous_soft = softmax(c(Unambiguous, Ambiguous),
+                                          temp = beta)[1],
+               Ambiguous_soft = softmax(c(Unambiguous, Ambiguous),
+                                        temp = beta)[2]) %>% 
+        select(age_group, agreement, prediction = Ambiguous_soft)
+    
+    # compute loss as squared error
+    loss = df.data %>% 
+        filter(age_group %in% age) %>% 
+        left_join(df.prediction) %>% 
+        mutate(loss = (p-prediction)^2) %>% 
+        pull(loss) %>% 
+        sum()
+    
+    return(loss)
+}
+
+# find best fitting softmax parameter
+fit = optim(par = 0, 
+            fn = fit_softmax)
+
+# use the best parameter
+beta = fit[[1]]
+
+# model with softmax 
+df.model.softmax = df.inference %>% 
+    select(age_group, utterance, agreement, posterior) %>% 
+    pivot_wider(names_from = utterance,
+                values_from = posterior) %>% 
+    rowwise() %>% 
+    mutate(Unambiguous_soft = softmax(c(Unambiguous, Ambiguous),
+                                      temp = beta)[1],
+           Ambiguous_soft = softmax(c(Unambiguous, Ambiguous),
+                                    temp = beta)[2]) %>% 
+    select(age_group, condition = agreement, posterior = Ambiguous_soft) %>% 
+    mutate(condition = factor(condition,
+                              levels = c("agree", "disagree"),
+                              labels = c("Agreement Trials", "Disagreement Trials")))
+```
+
+#### Separate softmax for each age
+
+```{r, warning=FALSE, message=FALSE}
+i = 1
+beta.age = numeric()
+for (age in 7:11){
+    beta.age[i] = optim(par = 0, 
+                        fn = fit_softmax)[[1]]
+    i = i + 1
+}
+
+df.model.softmax.separate = df.inference %>% 
+    select(age_group, utterance, agreement, posterior) %>% 
+    pivot_wider(names_from = utterance,
+                values_from = posterior) %>% 
+    group_by(age_group) %>% 
+    nest() %>% 
+    ungroup() %>% 
+    mutate(beta = beta.age) %>% 
+    mutate(data = map2(.x = data,
+                       .y = beta,
+                       .f = ~ .x %>% 
+                           rowwise() %>% 
+                           mutate(Unambiguous_soft = softmax(c(Unambiguous, Ambiguous),
+                                                             temp = .y)[1],
+                                  Ambiguous_soft = softmax(c(Unambiguous, Ambiguous),
+                                                           temp = .y)[2]))) %>% 
+    select(-beta) %>% 
+    unnest(data) %>% 
+    select(age_group, condition = agreement, posterior = Ambiguous_soft) %>% 
+    mutate(condition = factor(condition,
+                              levels = c("agree", "disagree"),
+                              labels = c("Agreement Trials", "Disagreement Trials")))
+
+```
+
+#### Linear increase in softmax
+
+- fit linear model to the best-fitting softmax parameters 
+
+```{r}
+df.beta.linear = tibble(softmax = beta.age) %>% 
+    mutate(x = 1:n())
+
+fit = lm(formula = softmax ~ 1 + x,
+         data = df.beta.linear)
+
+df.beta.linear = df.beta.linear %>% 
+    mutate(prediction = predict(fit))
+
+
+df.model.softmax.linear = df.inference %>% 
+    select(age_group, utterance, agreement, posterior) %>% 
+    pivot_wider(names_from = utterance,
+                values_from = posterior) %>% 
+    group_by(age_group) %>% 
+    nest() %>% 
+    ungroup() %>% 
+    mutate(beta = df.beta.linear$prediction) %>% 
+    mutate(data = map2(.x = data,
+                       .y = beta,
+                       .f = ~ .x %>% 
+                           rowwise() %>% 
+                           mutate(Unambiguous_soft = softmax(c(Unambiguous, Ambiguous),
+                                                             temp = .y)[1],
+                                  Ambiguous_soft = softmax(c(Unambiguous, Ambiguous),
+                                                           temp = .y)[2]))) %>% 
+    select(-beta) %>% 
+    unnest(data) %>% 
+    select(age_group, condition = agreement, posterior = Ambiguous_soft) %>% 
+    mutate(condition = factor(condition,
+                              levels = c("agree", "disagree"),
+                              labels = c("Agreement Trials", "Disagreement Trials")))
+```
+
+#### Model comparison
+
+```{r}
+df.model.posterior %>% 
+    mutate(name = "posterior") %>% 
+    select(-c(utterance, probability, prior)) %>% 
+    bind_rows(df.model.softmax %>% 
+                  mutate(name = "softmax")) %>% 
+    bind_rows(df.model.softmax.linear %>% 
+                  mutate(name = "softmax increase")) %>% 
+    pivot_wider(names_from = name,
+                values_from = posterior) %>% 
+    left_join(df.data %>% 
+                  mutate(condition = factor(agreement,
+                                            levels = c("agree", "disagree"),
+                                            labels = c("Agreement Trials",
+                                                       "Disagreement Trials"))) %>% 
+                  select(-agreement),
+              by = c("age_group", "condition")) %>% 
+    summarize(
+        r_posterior = cor(p, posterior),
+        r_softmax = cor(p, softmax),
+        r_softmaxincrease = cor(p, `softmax increase`),
+        rmse_posterior = rmse(p, posterior),
+        rmse_softmax = rmse(p, softmax),
+        rmse_softmaxincrease = rmse(p, `softmax increase`)) %>% 
+    pivot_longer(cols = everything(),
+                 names_to = c("index", "name"),
+                 names_sep = "_") %>% 
+    pivot_wider(names_from = index,
+                values_from = value) %>% 
+    print_table()
+```
+
+
+## PLOTS
+
+### Prediction condition
+
+```{r, fig.width=12, fig.height=6, warning=FALSE}
+# data for plot 
+df.plot = df.exp2.predict %>%
+    group_by(condition_amb_c) %>%
+    count(age_group, dis_yes) %>%
+    complete(age_group, dis_yes,
+             fill = list(n = 0)) %>%
+    mutate(prediction = factor(dis_yes,
+                               levels = c(0, 1),
+                               labels = c("Agree", "Disagree"))) %>%
+    mutate(condition_amb_c = factor(condition_amb_c,
+                                  levels = c("Unambiguous Trials", "Ambiguous Trials"))) %>% 
+  ungroup()
+
+df.plot.boot <- df.prediction.boot %>% 
+  mutate(condition_amb_c = factor(condition_amb_c,
+                                  levels = c("Unambiguous Trials", "Ambiguous Trials")))
+
+# plot
+ggplot(data = df.plot,
+       mapping = aes(x = age_group,
+                     y = n,
+                     fill = prediction)) +
+  geom_bar(position = "fill",
+           stat = "identity",
+           color = "black") +
+  geom_linerange(data = df.plot.boot,
+                 mapping = aes(y = 1,
+                               ymin = p_low,
+                               ymax = p_high,
+                               fill = NA,
+                               x = age_group)) +
+  facet_grid(cols = vars(condition_amb_c),
+             scales = "free") +
+  scale_fill_manual(values = c("#A4F76A", "#EEA49A")) +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Age", 
+       y = "Predicted Outcome",
+       fill = "Possible Outcomes") + 
+  ggtitle("Experiment 2: Prediction") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),
+        strip.text = element_text(size = 18),
+        strip.background = element_blank(),
+        axis.title = element_text(size = 18),
+        axis.text = element_text(size = 16),
+        legend.title = element_text(size = 20),
+        legend.text = element_text(size = 16),
+        legend.position = "right") 
+
+ggsave(file = "../figures/plots/exp2_pred.pdf",
+       width = 12,
+       height = 6)
+```
+
+### Inference condition
+
+```{r, fig.width=12, fig.height=6, warning=FALSE}
+# Data for Inference Plot
+df.plot.infer <- df.exp2.infer %>%
+  filter(!is.na(ambiguous_yes)) %>%
+  rename(condition = condition_disagree_c) %>% 
+  mutate(condition = factor(condition, levels = c("Agreement Trials",
+                                                  "Disagreement Trials"))) %>% 
+  group_by(condition) %>%
+  count(age_group, ambiguous_yes) %>%
+  complete(age_group, ambiguous_yes, fill = list(n = 0)) %>%
+  mutate(selection = factor(ambiguous_yes,
+                            levels = c(0, 1),
+                            labels = c("Unambiguous", "Ambiguous"))) %>% 
+  ungroup()
+
+# Models 
+df.model = df.model.posterior %>% 
+    mutate(name = "posterior") %>% 
+    select(-c(utterance, probability, prior)) %>% 
+    bind_rows(df.model.softmax %>% 
+                  mutate(name = "softmax")) %>% 
+    bind_rows(df.model.softmax.linear %>% 
+                  mutate(name = "softmax increase"))
+
+# Bootstrapped confidence intervals
+df.inference.boot = df.inference.boot %>% 
+  rename(condition = condition_disagree_c) %>% 
+  mutate(condition = factor(condition, levels = c("Agreement Trials",
+                                                  "Disagreement Trials"))) %>% 
+  ungroup()
+  
+
+# Plot
+ggplot(data = df.plot.infer,
+       mapping = aes(x = age_group,
+                     y = n,
+                     fill = selection)) +
+  geom_bar(position = "fill",
+           stat = "identity",
+           color = "black") +
+  geom_linerange(data = df.inference.boot,
+                 mapping = aes(y = 1,
+                               ymin = p_low,
+                               ymax = p_high,
+                               fill = NA,
+                               x = age_group)) +
+  geom_point(data = df.model,
+             mapping = aes(x = age_group,
+                           y = posterior,
+                           fill = NA,
+                           shape = name,
+                           group = name),
+             position = position_dodge(width = 0.9), 
+             size = 4,
+             fill = "white",
+             color = "black") + 
+  facet_grid(cols = vars(condition),
+             scales = "free") +
+  scale_fill_manual(values = c(Unambiguous = "#009999", Ambiguous = "#CC6600"),
+                    breaks = c("Unambiguous", "Ambiguous")) +
+  scale_shape_manual(values = 21:23) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Age", 
+       y = "Inferred Utterance",
+       fill = "Possible Statements",
+       shape = "Model",
+       title = "Experiment 2: Inference") + 
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),
+        strip.text = element_text(size = 18),
+        strip.background = element_blank(),
+        axis.title = element_text(size = 18),
+        axis.text = element_text(size = 16),
+        legend.title = element_text(size = 20),
+        legend.text = element_text(size = 16),
+        legend.position = "right") 
+
+ggsave(str_c("../figures/plots/exp2_infer_models.pdf"),
+       width = 12,
+       height = 6)
+```
