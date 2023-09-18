@@ -2,6 +2,7 @@
 title: "Children use disagreement to infer what happened"
 author: "Jamie Amemiya, Gail D. Heyman & Tobias Gerstenberg"
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
+bibliography: grateful-refs.bib
 output:
   bookdown::html_document2:
     toc: true
@@ -23,6 +24,7 @@ library("car")         # for hypothesis test
 library("Metrics")     # for rmse
 library("scales")      # for percentage plots
 library("broom.mixed") # for model summaries
+library("grateful")    # for package citations 
 library("tidyverse")   # for everything else
 ```
 
@@ -829,3 +831,15 @@ ggsave(str_c("../figures/plots/exp2_infer_models.pdf"),
        width = 12,
        height = 6)
 ```
+
+
+# Session info 
+
+```{r}
+cite_packages(output = "paragraph",
+              cite.tidyverse = TRUE,
+              out.dir = ".")
+
+sessionInfo()
+```
+
