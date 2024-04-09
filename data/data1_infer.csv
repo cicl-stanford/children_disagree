@@ -1,0 +1,209 @@
+"participant","age_group","age_continuous","zoom","gender","race","story_order_wagon","trial","trial_order_dada","valence_neg","condition_disagree","condition_agree","selection","ambiguous_yes","unambiguous_yes"
+1,7,7.64,0,"Boy","Black/African",-1,"disagree 1",-1,-1,1,0,"Unambiguous",0,1
+2,7,7.58,0,"Girl","Mixed",1,"disagree 1",-1,-1,1,0,"Ambiguous",1,0
+3,7,7.69,0,"Girl","Asian (including Pacific Islander, Indian)",1,"disagree 1",1,1,1,0,"Ambiguous",1,0
+4,7,7.38,0,"Boy","Asian (including Pacific Islander, Indian)",1,"disagree 1",-1,-1,1,0,"Unambiguous",0,1
+5,7,7.27,0,"Girl","Not reported",1,"disagree 1",-1,-1,1,0,"Ambiguous",1,0
+6,7,7.95,1,"Girl","White/European",-1,"disagree 1",1,1,1,0,"Unambiguous",0,1
+7,7,7.59,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"disagree 1",-1,1,1,0,"Unambiguous",0,1
+8,7,7.74,1,"Girl","Mixed",-1,"disagree 1",-1,1,1,0,"Ambiguous",1,0
+9,7,7.41,1,"Girl","Mixed",1,"disagree 1",1,1,1,0,"Ambiguous",1,0
+10,7,7.33,1,"Girl","Asian (including Pacific Islander, Indian)",-1,"disagree 1",1,-1,1,0,"Unambiguous",0,1
+11,8,8.34,0,"Girl","White/European",-1,"disagree 1",1,1,1,0,"Unambiguous",0,1
+12,8,8.16,0,"Girl","Black/African",-1,"disagree 1",1,-1,1,0,"Unambiguous",0,1
+13,8,8.82,0,"Girl","Asian (including Pacific Islander, Indian)",1,"disagree 1",-1,1,1,0,"Ambiguous",1,0
+14,8,8.63,0,"Boy","Asian (including Pacific Islander, Indian)",1,"disagree 1",1,-1,1,0,"Unambiguous",0,1
+15,8,8.51,0,"Boy","Asian (including Pacific Islander, Indian)",-1,"disagree 1",-1,1,1,0,"Ambiguous",1,0
+16,8,8.86,0,"Girl","Not reported",1,"disagree 1",-1,-1,1,0,"Unambiguous",0,1
+17,8,8.16,0,"Girl","White/European",-1,"disagree 1",1,-1,1,0,"Unambiguous",0,1
+18,8,8.01,1,"Boy","Hispanic/Latinx",-1,"disagree 1",-1,-1,1,0,"Unambiguous",0,1
+19,8,8.07,1,"Girl","Mixed",-1,"disagree 1",-1,-1,1,0,"Ambiguous",1,0
+20,8,8.19,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"disagree 1",1,1,1,0,"Ambiguous",1,0
+21,8,8.45,1,"Boy","Asian (including Pacific Islander, Indian)",1,"disagree 1",-1,1,1,0,"Ambiguous",1,0
+22,8,8.32,1,"Girl","Mixed",-1,"disagree 1",1,-1,1,0,"Unambiguous",0,1
+23,9,9.13,0,"Girl","Middle Eastern",1,"disagree 1",1,-1,1,0,"Ambiguous",1,0
+24,9,9.23,0,"Girl","Not reported",-1,"disagree 1",-1,-1,1,0,"Ambiguous",1,0
+25,9,9.54,0,"Boy","Not reported",1,"disagree 1",1,-1,1,0,"Unambiguous",0,1
+26,9,9.26,0,"Boy","Mixed",1,"disagree 1",-1,1,1,0,"Ambiguous",1,0
+27,9,9.38,1,"Boy","White/European",1,"disagree 1",1,1,1,0,"Unambiguous",0,1
+28,9,9.49,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"disagree 1",-1,1,1,0,"Unambiguous",0,1
+29,9,8.69,1,"Boy","Asian (including Pacific Islander, Indian)",1,"disagree 1",1,1,1,0,"Unambiguous",0,1
+30,9,9.71,1,"Girl","Middle Eastern",-1,"disagree 1",1,1,1,0,"Ambiguous",1,0
+31,9,9.49,1,"Girl","Asian (including Pacific Islander, Indian)",-1,"disagree 1",1,-1,1,0,"Unambiguous",0,1
+32,9,9.39,1,"Boy","Hispanic/Latinx",1,"disagree 1",-1,1,1,0,"Unambiguous",0,1
+33,10,10.07,0,"Boy","Black/African",-1,"disagree 1",-1,-1,1,0,"Ambiguous",1,0
+34,10,10.55,0,"Boy","White/European",-1,"disagree 1",1,1,1,0,"Ambiguous",1,0
+35,10,10.28,0,"Boy","Not reported",1,"disagree 1",1,-1,1,0,"Unambiguous",0,1
+36,10,10.56,0,"Boy","Middle Eastern",-1,"disagree 1",1,1,1,0,"Unambiguous",0,1
+37,10,10.26,0,"Boy","Mixed",-1,"disagree 1",1,-1,1,0,"Unambiguous",0,1
+38,10,10.85,1,"Girl","White/European",-1,"disagree 1",-1,1,1,0,"Ambiguous",1,0
+39,10,10.75,1,"Girl","Black/African",-1,"disagree 1",-1,1,1,0,"Unambiguous",0,1
+40,10,10.13,1,"Girl","Hispanic/Latinx",-1,"disagree 1",-1,-1,1,0,"Ambiguous",1,0
+41,10,10.79,1,"Girl","Asian (including Pacific Islander, Indian)",1,"disagree 1",-1,-1,1,0,"Ambiguous",1,0
+42,10,10.11,1,"Boy","White/European",-1,"disagree 1",1,-1,1,0,"Unambiguous",0,1
+43,11,11.07,0,"Girl","Asian (including Pacific Islander, Indian)",-1,"disagree 1",-1,-1,1,0,"Ambiguous",1,0
+44,11,11.6,0,"Boy","Other",1,"disagree 1",-1,-1,1,0,"Ambiguous",1,0
+45,11,11.08,0,"Boy","White/European",1,"disagree 1",1,-1,1,0,"Ambiguous",1,0
+46,11,11.41,1,"Boy","White/European",-1,"disagree 1",-1,1,1,0,"Ambiguous",1,0
+47,11,11.3,1,"Girl","White/European",1,"disagree 1",1,1,1,0,"Ambiguous",1,0
+48,11,11.06,1,"Girl","White/European",1,"disagree 1",-1,1,1,0,"Unambiguous",0,1
+49,11,11.09,1,"Boy","Hispanic/Latinx",1,"disagree 1",1,1,1,0,"Ambiguous",1,0
+50,11,12,1,"Boy","White/European",1,"disagree 1",-1,1,1,0,"Unambiguous",0,1
+51,11,11.01,1,"Girl","White/European",1,"disagree 1",-1,-1,1,0,"Ambiguous",1,0
+52,11,11.28,1,"Girl","White/European",1,"disagree 1",1,-1,1,0,"Ambiguous",1,0
+1,7,7.64,0,"Boy","Black/African",-1,"disagree 2",-1,-1,1,0,"Ambiguous",1,0
+2,7,7.58,0,"Girl","Mixed",1,"disagree 2",-1,-1,1,0,"Unambiguous",0,1
+3,7,7.69,0,"Girl","Asian (including Pacific Islander, Indian)",1,"disagree 2",1,1,1,0,"Ambiguous",1,0
+4,7,7.38,0,"Boy","Asian (including Pacific Islander, Indian)",1,"disagree 2",-1,-1,1,0,"Unambiguous",0,1
+5,7,7.27,0,"Girl","Not reported",1,"disagree 2",-1,-1,1,0,"Ambiguous",1,0
+6,7,7.95,1,"Girl","White/European",-1,"disagree 2",1,1,1,0,"Unambiguous",0,1
+7,7,7.59,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"disagree 2",-1,1,1,0,"Unambiguous",0,1
+8,7,7.74,1,"Girl","Mixed",-1,"disagree 2",-1,1,1,0,"Ambiguous",1,0
+9,7,7.41,1,"Girl","Mixed",1,"disagree 2",1,1,1,0,"Unambiguous",0,1
+10,7,7.33,1,"Girl","Asian (including Pacific Islander, Indian)",-1,"disagree 2",1,-1,1,0,"Unambiguous",0,1
+11,8,8.34,0,"Girl","White/European",-1,"disagree 2",1,1,1,0,"Unambiguous",0,1
+12,8,8.16,0,"Girl","Black/African",-1,"disagree 2",1,-1,1,0,"Unambiguous",0,1
+13,8,8.82,0,"Girl","Asian (including Pacific Islander, Indian)",1,"disagree 2",-1,1,1,0,"Ambiguous",1,0
+14,8,8.63,0,"Boy","Asian (including Pacific Islander, Indian)",1,"disagree 2",1,-1,1,0,"Random",0,0
+15,8,8.51,0,"Boy","Asian (including Pacific Islander, Indian)",-1,"disagree 2",-1,1,1,0,"Ambiguous",1,0
+16,8,8.86,0,"Girl","Not reported",1,"disagree 2",-1,-1,1,0,"Unambiguous",0,1
+17,8,8.16,0,"Girl","White/European",-1,"disagree 2",1,-1,1,0,"Unambiguous",0,1
+18,8,8.01,1,"Boy","Hispanic/Latinx",-1,"disagree 2",-1,-1,1,0,"Unambiguous",0,1
+19,8,8.07,1,"Girl","Mixed",-1,"disagree 2",-1,-1,1,0,"Ambiguous",1,0
+20,8,8.19,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"disagree 2",1,1,1,0,"Ambiguous",1,0
+21,8,8.45,1,"Boy","Asian (including Pacific Islander, Indian)",1,"disagree 2",-1,1,1,0,"Ambiguous",1,0
+22,8,8.32,1,"Girl","Mixed",-1,"disagree 2",1,-1,1,0,"Unambiguous",0,1
+23,9,9.13,0,"Girl","Middle Eastern",1,"disagree 2",1,-1,1,0,"Unambiguous",0,1
+24,9,9.23,0,"Girl","Not reported",-1,"disagree 2",-1,-1,1,0,"Ambiguous",1,0
+25,9,9.54,0,"Boy","Not reported",1,"disagree 2",1,-1,1,0,"Unambiguous",0,1
+26,9,9.26,0,"Boy","Mixed",1,"disagree 2",-1,1,1,0,"Ambiguous",1,0
+27,9,9.38,1,"Boy","White/European",1,"disagree 2",1,1,1,0,"Ambiguous",1,0
+28,9,9.49,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"disagree 2",-1,1,1,0,"Unambiguous",0,1
+29,9,8.69,1,"Boy","Asian (including Pacific Islander, Indian)",1,"disagree 2",1,1,1,0,"Ambiguous",1,0
+30,9,9.71,1,"Girl","Middle Eastern",-1,"disagree 2",1,1,1,0,"Unambiguous",0,1
+31,9,9.49,1,"Girl","Asian (including Pacific Islander, Indian)",-1,"disagree 2",1,-1,1,0,"Unambiguous",0,1
+32,9,9.39,1,"Boy","Hispanic/Latinx",1,"disagree 2",-1,1,1,0,"Unambiguous",0,1
+33,10,10.07,0,"Boy","Black/African",-1,"disagree 2",-1,-1,1,0,"Ambiguous",1,0
+34,10,10.55,0,"Boy","White/European",-1,"disagree 2",1,1,1,0,"Ambiguous",1,0
+35,10,10.28,0,"Boy","Not reported",1,"disagree 2",1,-1,1,0,"Unambiguous",0,1
+36,10,10.56,0,"Boy","Middle Eastern",-1,"disagree 2",1,1,1,0,"Unambiguous",0,1
+37,10,10.26,0,"Boy","Mixed",-1,"disagree 2",1,-1,1,0,"Unambiguous",0,1
+38,10,10.85,1,"Girl","White/European",-1,"disagree 2",-1,1,1,0,"Ambiguous",1,0
+39,10,10.75,1,"Girl","Black/African",-1,"disagree 2",-1,1,1,0,"Unambiguous",0,1
+40,10,10.13,1,"Girl","Hispanic/Latinx",-1,"disagree 2",-1,-1,1,0,"Ambiguous",1,0
+41,10,10.79,1,"Girl","Asian (including Pacific Islander, Indian)",1,"disagree 2",-1,-1,1,0,"Ambiguous",1,0
+42,10,10.11,1,"Boy","White/European",-1,"disagree 2",1,-1,1,0,"Unambiguous",0,1
+43,11,11.07,0,"Girl","Asian (including Pacific Islander, Indian)",-1,"disagree 2",-1,-1,1,0,"Ambiguous",1,0
+44,11,11.6,0,"Boy","Other",1,"disagree 2",-1,-1,1,0,"Unambiguous",0,1
+45,11,11.08,0,"Boy","White/European",1,"disagree 2",1,-1,1,0,"Ambiguous",1,0
+46,11,11.41,1,"Boy","White/European",-1,"disagree 2",-1,1,1,0,"Ambiguous",1,0
+47,11,11.3,1,"Girl","White/European",1,"disagree 2",1,1,1,0,"Ambiguous",1,0
+48,11,11.06,1,"Girl","White/European",1,"disagree 2",-1,1,1,0,"Unambiguous",0,1
+49,11,11.09,1,"Boy","Hispanic/Latinx",1,"disagree 2",1,1,1,0,"Ambiguous",1,0
+50,11,12,1,"Boy","White/European",1,"disagree 2",-1,1,1,0,"Unambiguous",0,1
+51,11,11.01,1,"Girl","White/European",1,"disagree 2",-1,-1,1,0,"Ambiguous",1,0
+52,11,11.28,1,"Girl","White/European",1,"disagree 2",1,-1,1,0,"Ambiguous",1,0
+1,7,7.64,0,"Boy","Black/African",-1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+2,7,7.58,0,"Girl","Mixed",1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+3,7,7.69,0,"Girl","Asian (including Pacific Islander, Indian)",1,"agree 1",1,1,0,1,"Unambiguous",0,1
+4,7,7.38,0,"Boy","Asian (including Pacific Islander, Indian)",1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+5,7,7.27,0,"Girl","Not reported",1,"agree 1",-1,-1,0,1,"Ambiguous",1,0
+6,7,7.95,1,"Girl","White/European",-1,"agree 1",1,1,0,1,"Unambiguous",0,1
+7,7,7.59,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"agree 1",-1,1,0,1,"Unambiguous",0,1
+8,7,7.74,1,"Girl","Mixed",-1,"agree 1",-1,1,0,1,"Unambiguous",0,1
+9,7,7.41,1,"Girl","Mixed",1,"agree 1",1,1,0,1,"Ambiguous",1,0
+10,7,7.33,1,"Girl","Asian (including Pacific Islander, Indian)",-1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+11,8,8.34,0,"Girl","White/European",-1,"agree 1",1,1,0,1,"Unambiguous",0,1
+12,8,8.16,0,"Girl","Black/African",-1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+13,8,8.82,0,"Girl","Asian (including Pacific Islander, Indian)",1,"agree 1",-1,1,0,1,"Ambiguous",1,0
+14,8,8.63,0,"Boy","Asian (including Pacific Islander, Indian)",1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+15,8,8.51,0,"Boy","Asian (including Pacific Islander, Indian)",-1,"agree 1",-1,1,0,1,"Unambiguous",0,1
+16,8,8.86,0,"Girl","Not reported",1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+17,8,8.16,0,"Girl","White/European",-1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+18,8,8.01,1,"Boy","Hispanic/Latinx",-1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+19,8,8.07,1,"Girl","Mixed",-1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+20,8,8.19,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"agree 1",1,1,0,1,"Ambiguous",1,0
+21,8,8.45,1,"Boy","Asian (including Pacific Islander, Indian)",1,"agree 1",-1,1,0,1,"Unambiguous",0,1
+22,8,8.32,1,"Girl","Mixed",-1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+23,9,9.13,0,"Girl","Middle Eastern",1,"agree 1",1,-1,0,1,"Ambiguous",1,0
+24,9,9.23,0,"Girl","Not reported",-1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+25,9,9.54,0,"Boy","Not reported",1,"agree 1",1,-1,0,1,"Ambiguous",1,0
+26,9,9.26,0,"Boy","Mixed",1,"agree 1",-1,1,0,1,"Ambiguous",1,0
+27,9,9.38,1,"Boy","White/European",1,"agree 1",1,1,0,1,"Unambiguous",0,1
+28,9,9.49,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"agree 1",-1,1,0,1,"Unambiguous",0,1
+29,9,8.69,1,"Boy","Asian (including Pacific Islander, Indian)",1,"agree 1",1,1,0,1,"Unambiguous",0,1
+30,9,9.71,1,"Girl","Middle Eastern",-1,"agree 1",1,1,0,1,"Unambiguous",0,1
+31,9,9.49,1,"Girl","Asian (including Pacific Islander, Indian)",-1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+32,9,9.39,1,"Boy","Hispanic/Latinx",1,"agree 1",-1,1,0,1,"Ambiguous",1,0
+33,10,10.07,0,"Boy","Black/African",-1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+34,10,10.55,0,"Boy","White/European",-1,"agree 1",1,1,0,1,"Ambiguous",1,0
+35,10,10.28,0,"Boy","Not reported",1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+36,10,10.56,0,"Boy","Middle Eastern",-1,"agree 1",1,1,0,1,"Unambiguous",0,1
+37,10,10.26,0,"Boy","Mixed",-1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+38,10,10.85,1,"Girl","White/European",-1,"agree 1",-1,1,0,1,"Unambiguous",0,1
+39,10,10.75,1,"Girl","Black/African",-1,"agree 1",-1,1,0,1,"Unambiguous",0,1
+40,10,10.13,1,"Girl","Hispanic/Latinx",-1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+41,10,10.79,1,"Girl","Asian (including Pacific Islander, Indian)",1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+42,10,10.11,1,"Boy","White/European",-1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+43,11,11.07,0,"Girl","Asian (including Pacific Islander, Indian)",-1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+44,11,11.6,0,"Boy","Other",1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+45,11,11.08,0,"Boy","White/European",1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+46,11,11.41,1,"Boy","White/European",-1,"agree 1",-1,1,0,1,"Unambiguous",0,1
+47,11,11.3,1,"Girl","White/European",1,"agree 1",1,1,0,1,"Unambiguous",0,1
+48,11,11.06,1,"Girl","White/European",1,"agree 1",-1,1,0,1,"Unambiguous",0,1
+49,11,11.09,1,"Boy","Hispanic/Latinx",1,"agree 1",1,1,0,1,"Unambiguous",0,1
+50,11,12,1,"Boy","White/European",1,"agree 1",-1,1,0,1,"Unambiguous",0,1
+51,11,11.01,1,"Girl","White/European",1,"agree 1",-1,-1,0,1,"Unambiguous",0,1
+52,11,11.28,1,"Girl","White/European",1,"agree 1",1,-1,0,1,"Unambiguous",0,1
+1,7,7.64,0,"Boy","Black/African",-1,"agree 2",-1,-1,0,1,"Unambiguous",0,1
+2,7,7.58,0,"Girl","Mixed",1,"agree 2",-1,-1,0,1,"Ambiguous",1,0
+3,7,7.69,0,"Girl","Asian (including Pacific Islander, Indian)",1,"agree 2",1,1,0,1,"Unambiguous",0,1
+4,7,7.38,0,"Boy","Asian (including Pacific Islander, Indian)",1,"agree 2",-1,-1,0,1,"Unambiguous",0,1
+5,7,7.27,0,"Girl","Not reported",1,"agree 2",-1,-1,0,1,"Ambiguous",1,0
+6,7,7.95,1,"Girl","White/European",-1,"agree 2",1,1,0,1,"Unambiguous",0,1
+7,7,7.59,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"agree 2",-1,1,0,1,"Unambiguous",0,1
+8,7,7.74,1,"Girl","Mixed",-1,"agree 2",-1,1,0,1,"Ambiguous",1,0
+9,7,7.41,1,"Girl","Mixed",1,"agree 2",1,1,0,1,"Unambiguous",0,1
+10,7,7.33,1,"Girl","Asian (including Pacific Islander, Indian)",-1,"agree 2",1,-1,0,1,"Unambiguous",0,1
+11,8,8.34,0,"Girl","White/European",-1,"agree 2",1,1,0,1,"Unambiguous",0,1
+12,8,8.16,0,"Girl","Black/African",-1,"agree 2",1,-1,0,1,"Unambiguous",0,1
+13,8,8.82,0,"Girl","Asian (including Pacific Islander, Indian)",1,"agree 2",-1,1,0,1,"Ambiguous",1,0
+14,8,8.63,0,"Boy","Asian (including Pacific Islander, Indian)",1,"agree 2",1,-1,0,1,"Ambiguous",1,0
+15,8,8.51,0,"Boy","Asian (including Pacific Islander, Indian)",-1,"agree 2",-1,1,0,1,"Unambiguous",0,1
+16,8,8.86,0,"Girl","Not reported",1,"agree 2",-1,-1,0,1,"Unambiguous",0,1
+17,8,8.16,0,"Girl","White/European",-1,"agree 2",1,-1,0,1,"Ambiguous",1,0
+18,8,8.01,1,"Boy","Hispanic/Latinx",-1,"agree 2",-1,-1,0,1,"Unambiguous",0,1
+19,8,8.07,1,"Girl","Mixed",-1,"agree 2",-1,-1,0,1,"Unambiguous",0,1
+20,8,8.19,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"agree 2",1,1,0,1,"Ambiguous",1,0
+21,8,8.45,1,"Boy","Asian (including Pacific Islander, Indian)",1,"agree 2",-1,1,0,1,"Ambiguous",1,0
+22,8,8.32,1,"Girl","Mixed",-1,"agree 2",1,-1,0,1,"Ambiguous",1,0
+23,9,9.13,0,"Girl","Middle Eastern",1,"agree 2",1,-1,0,1,"Unambiguous",0,1
+24,9,9.23,0,"Girl","Not reported",-1,"agree 2",-1,-1,0,1,"Unambiguous",0,1
+25,9,9.54,0,"Boy","Not reported",1,"agree 2",1,-1,0,1,"Unambiguous",0,1
+26,9,9.26,0,"Boy","Mixed",1,"agree 2",-1,1,0,1,"Ambiguous",1,0
+27,9,9.38,1,"Boy","White/European",1,"agree 2",1,1,0,1,"Unambiguous",0,1
+28,9,9.49,1,"Boy","Asian (including Pacific Islander, Indian)",-1,"agree 2",-1,1,0,1,"Unambiguous",0,1
+29,9,8.69,1,"Boy","Asian (including Pacific Islander, Indian)",1,"agree 2",1,1,0,1,"Unambiguous",0,1
+30,9,9.71,1,"Girl","Middle Eastern",-1,"agree 2",1,1,0,1,"Unambiguous",0,1
+31,9,9.49,1,"Girl","Asian (including Pacific Islander, Indian)",-1,"agree 2",1,-1,0,1,"Unambiguous",0,1
+32,9,9.39,1,"Boy","Hispanic/Latinx",1,"agree 2",-1,1,0,1,"Unambiguous",0,1
+33,10,10.07,0,"Boy","Black/African",-1,"agree 2",-1,-1,0,1,"Unambiguous",0,1
+34,10,10.55,0,"Boy","White/European",-1,"agree 2",1,1,0,1,"Unambiguous",0,1
+35,10,10.28,0,"Boy","Not reported",1,"agree 2",1,-1,0,1,"Unambiguous",0,1
+36,10,10.56,0,"Boy","Middle Eastern",-1,"agree 2",1,1,0,1,"Unambiguous",0,1
+37,10,10.26,0,"Boy","Mixed",-1,"agree 2",1,-1,0,1,"Ambiguous",1,0
+38,10,10.85,1,"Girl","White/European",-1,"agree 2",-1,1,0,1,"Unambiguous",0,1
+39,10,10.75,1,"Girl","Black/African",-1,"agree 2",-1,1,0,1,"Unambiguous",0,1
+40,10,10.13,1,"Girl","Hispanic/Latinx",-1,"agree 2",-1,-1,0,1,"Unambiguous",0,1
+41,10,10.79,1,"Girl","Asian (including Pacific Islander, Indian)",1,"agree 2",-1,-1,0,1,"Unambiguous",0,1
+42,10,10.11,1,"Boy","White/European",-1,"agree 2",1,-1,0,1,"Unambiguous",0,1
+43,11,11.07,0,"Girl","Asian (including Pacific Islander, Indian)",-1,"agree 2",-1,-1,0,1,"Ambiguous",1,0
+44,11,11.6,0,"Boy","Other",1,"agree 2",-1,-1,0,1,"Ambiguous",1,0
+45,11,11.08,0,"Boy","White/European",1,"agree 2",1,-1,0,1,"Unambiguous",0,1
+46,11,11.41,1,"Boy","White/European",-1,"agree 2",-1,1,0,1,"Unambiguous",0,1
+47,11,11.3,1,"Girl","White/European",1,"agree 2",1,1,0,1,"Unambiguous",0,1
+48,11,11.06,1,"Girl","White/European",1,"agree 2",-1,1,0,1,"Unambiguous",0,1
+49,11,11.09,1,"Boy","Hispanic/Latinx",1,"agree 2",1,1,0,1,"Unambiguous",0,1
+50,11,12,1,"Boy","White/European",1,"agree 2",-1,1,0,1,"Unambiguous",0,1
+51,11,11.01,1,"Girl","White/European",1,"agree 2",-1,-1,0,1,"Unambiguous",0,1
+52,11,11.28,1,"Girl","White/European",1,"agree 2",1,-1,0,1,"Unambiguous",0,1
